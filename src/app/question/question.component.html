@@ -5,15 +5,15 @@
  Description : {{topic.concepts[currentConcept].questions[currentQuestion] || topic.concepts[currentConcept].questions[currentQuestion].questionID}}
 </p>
  <br/>
- <form #questionForm="ngForm" (ngSubmit)="onFormSubmit(questionForm)" >
+ <form #questionForm="ngForm" (ngSubmit)="submitAnswers()" >
  <input type="radio" name ="selectedOption" value="a" [(ngModel)]="selectedOption"> A<br/>
  <input type="radio" name ="selectedOption" value="b" [(ngModel)]="selectedOption"> B<br/>
  <input type="radio" name ="selectedOption" value="c" [(ngModel)]="selectedOption"> C<br/>
  <input type="radio" name ="selectedOption" value="d" [(ngModel)]="selectedOption"> D<br/>
  <br/>
- <button (click)="getPreviousQuestion(questionForm)">Previous</button>
- <button (click)="getNextQuestion(questionForm)">Next</button>
+ <button (click)="getPreviousQuestion()">Previous</button>
+ <button (click)="getNextQuestion()">Next</button>
  <button (click)="submitAnswers()">Submit</button>
 </form>
-
+<p>{{submit_response}}</p>
 

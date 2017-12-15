@@ -21,8 +21,8 @@ export class QuestionService{
     // });
     // return of(this.questions);
   }
-  submitAnswers(answers:string[]){
-    this.http.post('',answers).subscribe();
+  submitAnswers(answers:string[]):Observable<Object>{
+    return this.http.post('http://localhost/onlineTest/saveResponse.php',answers);
   }
 
 }

@@ -11,21 +11,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 })
 export class QuestionComponent implements OnInit {
-  currentIndex: number;
-  currentConcept: number;
-  currentQuestion: number;
-  questionsCount: number;
+  currentIndex: number=0;
+  currentConcept: number=0;
+  currentQuestion: number=0;
+  questionsCount: number=0;
   topic: Topic;
-  selectedOption:string;
-  answers:any[];
+  selectedOption:string="";
+  answers:any[]=[];
+  submit_response:string ="";
 
   constructor(private questionService: QuestionService) {
-    this.currentIndex = 0;
-    this.currentConcept = 0;
-    this.currentQuestion = 0;
-    this.questionsCount = 0;
-    this.selectedOption = "";
-    this.answers = [];
   }
 
   ngOnInit() {
@@ -45,7 +40,7 @@ export class QuestionComponent implements OnInit {
     );
   }
 
-  getNextQuestion(form:NgForm): void {
+  getNextQuestion(): void {
     let questionID = this.topic.concepts[this.currentConcept].questions[this.currentQuestion];
     let answer = this.selectedOption.toString();
     this.answers.push({ questionID: questionID,answer:answer});
@@ -60,10 +55,10 @@ export class QuestionComponent implements OnInit {
         this.currentQuestion++;
       }
     }
-    form.reset();
+   
   }
 
-  getPreviousQuestion(form: NgForm): void {
+  getPreviousQuestion(): void {
     let questionID = this.topic.concepts[this.currentConcept].questions[this.currentQuestion];
     let answer = this.selectedOption.toString();
     this.answers.push({ questionID: answer
@@ -78,9 +73,10 @@ export class QuestionComponent implements OnInit {
         this.currentQuestion--;
       }
     }
-    form.reset();
+    
   }
   submitAnswers():void{
-    this.questionService.submitAnswers(this.answers);
+    this.questionService.submitAnswers(this.answers).subscribe( data => console.log(data));
+    this.submit_response = "Successfully submitted";
   }
 }
