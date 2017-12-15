@@ -5,11 +5,13 @@ import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './question/question.component';
 import {QuestionService} from './question.service';
+import { StartModalComponent } from './start-modal/start-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent
+    QuestionComponent,
+    StartModalComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,FormsModule
